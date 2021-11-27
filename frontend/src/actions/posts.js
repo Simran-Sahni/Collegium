@@ -10,6 +10,9 @@ import {
 	LIKE,
 	COMMENT,
 	FETCH_BY_CREATOR,
+	UPDATE_GROUP,
+	END_LOADING_GROUPS,
+	START_LOADING_GROUPS,
 } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
@@ -86,6 +89,28 @@ export const createPost = (post, history) => async (dispatch) => {
 	}
 };
 
+export const createPostInGroup = (post, group_id, history) => async (dispatch) => {
+	try {
+		dispatch({ type: START_LOADING_GROUPS });
+		const { data1 } = await api.createPost(post);
+		//console.log(data)
+		dispatch({ type: CREATE_POST, payload: data1 });
+
+		const { data2 } = await api.addPostInGroup(group_id, data1.post._id);
+
+		dispatch({
+			type: UPDATE_GROUP,
+			payload: data2,
+		});
+
+		dispatch({ type: END_LOADING_GROUPS });
+
+		history.push(`/groups/${group_id}/post/${data1.post._id}`);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const updatePost = (id, post) => async (dispatch) => {
 	try {
 		const { data } = await api.updatePost(id, post);
@@ -101,7 +126,7 @@ export const likePost = (id) => async (dispatch) => {
 
 	try {
 		const { data } = await api.likePost(id, user?.token);
-
+		console.log('like post caleld');
 		dispatch({ type: LIKE, payload: data });
 	} catch (error) {
 		console.log(error);

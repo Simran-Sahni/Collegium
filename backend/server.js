@@ -5,8 +5,6 @@ import helmet from "helmet";
 import connectDB  from "./db.js";
 import groupRouter from "./routes/groups.js";
 import postRouter from "./routes/posts.js";
-import messageRouter from "./routes/messages.js";
-import chatRouter from "./routes/conversations.js";
 import userRouter from "./routes/users.js";
 const app = express();
 
@@ -24,8 +22,6 @@ app.use("/api-status", (req, res) => res.json("API Up & Running"));
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 app.use("/groups", groupRouter);
-app.use("/messages", messageRouter);
-app.use("/conversations", chatRouter);
 
 const PORT = process.env.PORT || 5000;
 

@@ -12,7 +12,14 @@ import {
 	END_LOADING
 } from "../constants/actionTypes";
 
-export default (state = { loadingPost: true, posts: [] }, action) => {
+const initialState = { 
+	loadingPost: true,
+	posts: [] ,
+	post: null
+}
+
+
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case START_LOADING:
 			return { ...state, loadingPost: true };

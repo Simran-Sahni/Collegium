@@ -10,10 +10,10 @@ import auth from "../middleware/auth.js";
 export const createGroup = async (req, res) => {
 	console.log("Create group called");
 	try {
-		console.log(req.body, req.userId);
+		//console.log(req.body, req.userId);
 		const { name } = req.body;
 		const oldGroup = await Group.find({ name });
-		console.log("oldGroup", oldGroup);
+		//console.log("oldGroup", oldGroup);
 		if (oldGroup.length) {
 			return res.status(401).json({
 				message:
@@ -30,7 +30,7 @@ export const createGroup = async (req, res) => {
 		});
 
 		const group = await newGroup.save();
-		console.log(group);
+		//console.log(group);
 		return res
 			.status(200)
 			.json({ message: "Group Creation successful!", group });

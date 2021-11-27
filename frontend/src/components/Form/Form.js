@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 import { useHistory } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
-
-import { createPost, updatePost } from "../../actions/posts";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import { createPost, updatePost, createPostInGroup } from "../../actions/posts";
 import useStyles from "./styles";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ currentId, setCurrentId, groupId }) => {
 	const [postData, setPostData] = useState({
 		name: "",
 		text: "",
@@ -37,15 +38,21 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log('Current user is: ', user);
-		if (currentId === 0) {
-			dispatch(createPost({ ...postData, name: user?.result?.name }, history));
-			clear();
-		} else {
-			dispatch(
-				updatePost(currentId, { ...postData, name: user?.result?.name })
-			);
-			clear();
+		//console.log('Current user is: inside Form component ', user);
+		//console.log('GroupID in Form', groupId);
+		if(String(groupId) !== undefined) {
+			if (currentId === 0) {
+				//dispatch(createPost({ ...postData, name: user?.result?.name }, history));
+				dispatch(
+					createPostInGroup({ ...postData, name: user?.result?.name }, groupId, history)
+				);
+				clear();
+			} else {
+				dispatch(
+					updatePost(currentId, { ...postData, name: user?.result?.name })
+				);
+				clear();
+			}
 		}
 	};
 
@@ -133,4 +140,11 @@ const Form = ({ currentId, setCurrentId }) => {
 	);
 };
 
-export default Form;
+Form.prototype = {
+	groupId: PropTypes.object,
+}
+
+
+
+
+export default connect()(Form);

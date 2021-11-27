@@ -10,7 +10,13 @@ import {
     JOIN_GROUP
 } from "../constants/actionTypes";
 
-export default (state = { loadingGroup: true, groups: [] }, action) => {
+const initialState = { 
+    loadingGroup: true,
+    groups: [],
+    group: null
+}
+
+export default (state = initialState, action) => {
     switch (action.type) {
 			case START_LOADING_GROUPS:
 				return { ...state, loadingGroup: true };

@@ -85,7 +85,7 @@ export const updateGroup = (id, group) => async (dispatch) => {
 
 export const deleteGroup = (id) => async (dispatch) => {
 	try {
-		await await api.deleteGroup(id);
+		await api.deleteGroup(id);
 
 		dispatch({ type: DELETE_GROUP, payload: id });
 
@@ -94,6 +94,8 @@ export const deleteGroup = (id) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+
 
 // export const joinGroup = (id) = async (dispatch) => {
 //     try {

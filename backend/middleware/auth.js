@@ -7,8 +7,7 @@ const auth = async (req, res, next) => {
 	try {
 		// console.log(req.headers);
 		// console.log(req.body);
-		const token =
-			req.headers.authorization.split(" ")[1] || req.headers.x - auth - token;
+		const token = req.headers["x-auth-token"] || req.headers.authorization.split(" ")[1];
 		const isCustomAuth = token.length < 500;
 
 		let decodedData;

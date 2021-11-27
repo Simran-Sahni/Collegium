@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase, Box } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
+import InfoIcon from "@material-ui/icons/Info";
+import AddCircleSharpIcon from "@material-ui/icons/AddCircleSharp";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import { useDispatch } from 'react-redux';
@@ -50,22 +52,19 @@ const Group = ({ group, setCurrentId }) => {
   };
 
   return (
-    // <Box>
-    //   {console.log(group)}
-    //   <Typography>
-    //     Group grid item
-    //    </Typography>
-    // </Box>
-    <Card className={classes.card} raised elevation={6}>
-      <ButtonBase
-        component="span"
-        name="test"
-        className={classes.cardAction}
-        onClick={openGroup}
-      >
-        
-        
-        {/* {(user?.result?.googleId === group?.creator || user?.result?._id === group?.creator) && (
+		// <Box>
+		//   {console.log(group)}
+		//   <Typography>
+		//     Group grid item
+		//    </Typography>
+		// </Box>
+		<Card className={classes.card} raised elevation={6}>
+			<ButtonBase
+				component='span'
+				name='test'
+				className={classes.cardAction}
+				onClick={openGroup}>
+				{/* {(user?.result?.googleId === group?.creator || user?.result?._id === group?.creator) && (
         <div className={classes.overlay2} name="edit">
           <Button
             onClick={(e) => {
@@ -79,29 +78,50 @@ const Group = ({ group, setCurrentId }) => {
           </Button>
         </div>
         )} */}
-       
-        <Typography className={classes.title} gutterBottom variant="h6" component="h6">{group.name}</Typography>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">{group.members.length} are part of this group...</Typography>
-        </CardContent>
-      </ButtonBase>
-      <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" disabled={!user?.result} onClick={openGroup}>
-          View Group
-        </Button>
-        {(  ! (group?.members.includes(user?.result?.googleId))   &&  !(group?.members.includes(user?.result?._id))) && (
-        <Button size="small" color="primary" disabled={!user?.result} onClick={handleJoining}>
-          Join Group
-        </Button>         
-        )}
-        {(  group?.admin.includes(user?.result?.googleId)   || group?.admin.includes(user?.result?._id)) && (
-          <Button size="small" color="secondary" onClick={() => dispatch(deleteGroup(group._id))}>
-            <DeleteIcon fontSize="small" /> &nbsp; Delete
-          </Button>
-        )}
-      </CardActions>
-    </Card>
-  );
+
+				<Typography
+					className={classes.title}
+					gutterBottom
+					variant='h6'
+					component='h6'>
+					{group.name}
+				</Typography>
+				<CardContent>
+					<Typography variant='body2' color='textSecondary' component='p'>
+						{group.members.length} are part of this group...
+					</Typography>
+				</CardContent>
+			</ButtonBase>
+			<CardActions className={classes.cardActions}>
+				<Button
+					size='small'
+					color='primary'
+					disabled={!user?.result}
+					onClick={openGroup}>
+					<InfoIcon fontSize='small' /> &nbsp; 
+				</Button>
+				{!group?.members.includes(user?.result?.googleId) &&
+					!group?.members.includes(user?.result?._id) && (
+						<Button
+							size='small'
+							color='primary'
+							disabled={!user?.result}
+							onClick={handleJoining}>
+							<AddCircleSharpIcon fontSize='small' /> &nbsp; 
+						</Button>
+					)}
+				{(group?.admin.includes(user?.result?.googleId) ||
+					group?.admin.includes(user?.result?._id)) && (
+					<Button
+						size='small'
+						color='secondary'
+						onClick={() => dispatch(deleteGroup(group._id))}>
+						<DeleteIcon fontSize='small' /> &nbsp; 
+					</Button>
+				)}
+			</CardActions>
+		</Card>
+	);
 };
 
 export default Group;

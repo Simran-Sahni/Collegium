@@ -17,7 +17,7 @@ const App = () => {
 			<Container maxWidth='xl'>
 				<Navbar />
 				<Switch>
-					<Route path='/' exact component={() => <Redirect to='/groups' />} />
+					<Route path='/' exact component={() => <Redirect to='/posts' />} />
 					<Route path='/groups' exact component={Dashboard} />
 					<Route path='/groups/:id' exact component={GroupDetails} />
 					<Route path='/posts' exact component={Home} />
@@ -30,7 +30,7 @@ const App = () => {
 					<Route
 						path='/auth'
 						exact
-						component={() => (!user ? <Auth /> : <Redirect to='/groups' />)}
+						component={() => (!user ? <Auth /> : <Redirect to='/auth' />)}
 					/>
 				</Switch>
 			</Container>

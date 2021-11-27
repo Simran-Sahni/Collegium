@@ -59,9 +59,9 @@ export const loginUser = async (req, res) => {
 			return res.status(400).json({ message: "Invalid credentials" });
 
 		const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
-			expiresIn: "1h",
+			expiresIn: "2 days",
 		});
-		console.log(oldUser, token);
+		//console.log(oldUser, token);
 		res.status(200).json({ result: oldUser, token });
 	} catch (err) {
 		console.log(error);
@@ -71,7 +71,7 @@ export const loginUser = async (req, res) => {
 
 export const registerUser = async (req, res) => {
 	const { email, password, firstName, lastName } = req.body;
-	console.log('inside register', req.body);
+	//console.log('inside register', req.body);
 	try {
 		const oldUser = await User.findOne({ email });
 
@@ -84,16 +84,16 @@ export const registerUser = async (req, res) => {
 			email,
 			password: hashedPassword,
 			name: `${firstName} ${lastName}`,
-			picture: ''
+			picture: "",
 		});
 
 		await result.save();
 
-		console.log('result document object', result);
+		//console.log("result document object", result);
 		const token = jwt.sign({ email: result.email, id: result._id }, secret, {
-			expiresIn: "1h",
+			expiresIn: "2 days",
 		});
-		console.log(result, token);
+		//console.log(result, token);
 		res.status(201).json({ result, token });
 	} catch (error) {
 		console.log(error);

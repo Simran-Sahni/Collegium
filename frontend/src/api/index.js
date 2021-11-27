@@ -37,8 +37,12 @@ export const fetchPostsBySearch = (searchQuery) =>
 			searchQuery.tags
 		}`
 	);
+
+export const addPostInGroup = (group_id, post_id) => API.patch(`/groups/:${group_id}/post/:${post_id}`);
+
 export const createPost = (newPost) => API.post("/posts", newPost);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+
+export const likePost = (group_id, post_id) => API.patch(`/posts/${post_id}/likePost`);
 export const comment = (value, id) =>
 	API.post(`/posts/${id}/commentPost`, { value });
 export const updatePost = (id, updatedPost) =>

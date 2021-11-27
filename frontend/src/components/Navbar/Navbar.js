@@ -57,25 +57,7 @@ const Navbar = () => {
 						<Typography className={classes.userName} variant='h6'>
 							{user?.result.name}
 						</Typography>
-						<Button
-							variant='contained'
-							className={classes.buttons}
-							color='secondary'
-							size="large"
-							onClick={logout}>
-							Messages
-						</Button>
-
-						<Button
-							variant='contained'
-							className={classes.buttons}
-							color='secondary'
-							size="large"
-							onClick={logout}
-							startIcon = {<GroupIcon />}
-						>
-						  Users
-						</Button>
+						
 						
 						<Button
 							variant='contained'
