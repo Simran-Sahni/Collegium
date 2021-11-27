@@ -21,7 +21,7 @@ Using MERN stack to build a online forum where students can put forth their idea
 -   Removing bugs in the current version, along with enabling robust state management, currently using Redux
 
 ## Helpful Online Projects for inspiration
-[Javascript Mastery MERN memories project](https://youtube.com/playlist?list=PL6QREj8te1P7VSwhrMf3D3Xt4V6_SRkhu)
-[Lama Dev's FB clone project](https://youtu.be/pFHyZvVxce0)
+- [Javascript Mastery MERN memories project](https://youtube.com/playlist?list=PL6QREj8te1P7VSwhrMf3D3Xt4V6_SRkhu)
+- [Lama Dev's FB clone project](https://youtu.be/pFHyZvVxce0)
 
 _* Special Thanks to my Mentor, Mr Chirag Jindal, from Microsoft, for following up & guiding throughout the way *_
